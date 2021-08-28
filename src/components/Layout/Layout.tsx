@@ -4,14 +4,14 @@ import SideMap from 'components/SideMap'
 import React, { ReactElement } from 'react'
 
 const Layout = ({ children }: {children: ReactElement}) => (
-  <div>
+  <>
     <Header />
     <main style={{ display: 'flex' }}>
       {children}
       <SideMap />
     </main>
     <Footer />
-  </div>
+  </>
 )
 
 export default Layout

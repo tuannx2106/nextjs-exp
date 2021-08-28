@@ -1,13 +1,13 @@
 import Layout from 'components/Layout'
 import React, { ReactElement } from 'react'
 
-const ListingPage = () => (
+const DetailPage = () => (
   <div>
     listing
   </div>
 )
 
-ListingPage.getLayout = function getLayout(page: ReactElement) {
+DetailPage.getLayout = function getLayout(page: ReactElement) {
   return (
     <Layout>
       {page}
@@ -15,4 +15,4 @@ ListingPage.getLayout = function getLayout(page: ReactElement) {
   )
 }
 
-export default ListingPage
+export default DetailPage
