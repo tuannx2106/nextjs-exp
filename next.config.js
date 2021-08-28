@@ -2,7 +2,7 @@
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const withAntdLess = require('next-plugin-antd-less');
 
-const subPath = '/click-to-call-csv';
+const subPath = '/nextjs-exp';
 
 module.exports = {
   ...withAntdLess({
