@@ -1,4 +1,4 @@
-import { Footer } from 'antd/lib/layout/layout'
+import Footer from 'components/Footer'
 import Header from 'components/Header'
 import SideMap from 'components/SideMap'
 import React, { ReactElement } from 'react'
@@ -7,7 +7,7 @@ const Layout = ({ children }: {children: ReactElement}) => (
   <>
     <Header />
     <main style={{ display: 'flex' }}>
-      {children}
+      <div style={{ flex: 1 }}>{children}</div>
       <SideMap />
     </main>
     <Footer />

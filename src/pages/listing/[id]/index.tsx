@@ -1,1 +1,1 @@
-export { default } from 'containers/DetailPage'
+export { default, getStaticPaths, getStaticProps } from 'containers/DetailPage'

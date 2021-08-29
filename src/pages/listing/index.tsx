@@ -1,1 +1,1 @@
-export { default } from 'containers/ListingPage'
+export { default, getStaticProps } from 'containers/ListingPage'

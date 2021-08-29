@@ -1,9 +1,12 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import { Button, Popconfirm, Table, Upload } from 'antd';
 import { ColumnsType } from 'antd/lib/table';
 import React, { useState } from 'react';
-import { parse } from 'papaparse';
+import Link from 'next/link';
+import { GetStaticProps, InferGetStaticPropsType } from 'next';
+import { NextSeo } from 'next-seo';
 import s from './HomePage.module.scss';
-import { RecordType } from './types';
+import { Post, RecordType, StaticPropsType } from './types';
 
 export const readFile = (file: File) => new Promise((resolve) => {
   const reader = new FileReader()
@@ -11,7 +14,7 @@ export const readFile = (file: File) => new Promise((resolve) => {
   reader.readAsText(file)
 })
 
-const HomePage = () => {
+const HomePage = ({ text, posts }: InferGetStaticPropsType<GetStaticProps<StaticPropsType>>) => {
   const [records, setRecords] = useState<RecordType[]>([])
 
   const columns: ColumnsType<RecordType> = [
@@ -46,20 +49,20 @@ const HomePage = () => {
     },
   ]
 
-  const customRequestUpload = async ({ file }: {file: File}) => {
-    const _file = await readFile(file)
-    const { data } = parse<RecordType>(_file as File, { header: true })
-    setRecords(data)
-  }
-
   return (
     <div className={s.root}>
+      <NextSeo
+        title="Home page title"
+        description="A short description goes here."
+      />
+
+      <Link href="/listing">
+        <a>To listing page {posts[0].author}</a>
+      </Link>
       <Upload
-        // @ts-ignore
-        customRequest={customRequestUpload}
         showUploadList={false}
       >
-        <Button type="primary">Upload</Button>
+        <Button type="primary">{text}</Button>
       </Upload>
       <Table<RecordType>
         columns={columns}
@@ -71,5 +74,20 @@ const HomePage = () => {
     </div>
   );
 };
+
+export const getStaticProps: GetStaticProps<StaticPropsType> = async () => {
+  const posts: Post[] = [
+    {
+      author: 'Sergio',
+      content: 'Hello world!',
+    },
+  ]
+  return {
+    props: {
+      text: 'homepage',
+      posts,
+    },
+  }
+}
 
 export default HomePage;
