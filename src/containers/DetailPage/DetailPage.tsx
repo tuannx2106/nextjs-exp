@@ -6,12 +6,30 @@ import Link from 'next/link'
 import Image from 'next/image'
 import React, { ReactElement } from 'react'
 import { Show } from 'types/show'
+import { NextSeo } from 'next-seo'
 
 const DetailPage = ({ show }: InferGetStaticPropsType<GetStaticProps<GetStaticPropsReturn>>) => {
   const { image, summary, name } = show
 
   return (
     <div style={{ padding: 24 }}>
+      <NextSeo
+        title={name}
+        description={`This is a detail page of ${name}`}
+        openGraph={{
+          title: name,
+          description: `This is a detail page of ${name}`,
+          images: [
+            {
+              url: image.medium,
+              width: 800,
+              height: 600,
+              alt: 'Description for OG image 1',
+            },
+          ],
+        }}
+      />
+
       <h1> This is {name}</h1>
       <Image
         src={image.medium}
