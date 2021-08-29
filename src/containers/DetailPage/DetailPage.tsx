@@ -98,12 +98,12 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
     return {
       paths: data.map((show: {score: number, show: Show}) => `/listing/${show.show.id}`),
-      fallback: false,
+      fallback: 'blocking',
     }
   } catch (error) {
     return {
       paths: [],
-      fallback: true,
+      fallback: 'blocking',
     }
   }
 }
